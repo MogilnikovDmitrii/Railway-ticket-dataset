@@ -2,8 +2,10 @@ import random
 from pathlib import Path
 from src.config.config import (
     payment_system_coefficients,
-    bank_coefficients
+    bank_coefficients,
+    group_size_coefficients
 )
+
 import pandas as pd
 
 from src.card_generator.card import generate_card
@@ -30,10 +32,6 @@ df_combined = pd.concat(
 )
 
 
-group_sizes = [1, 2, 3, 4, 5]
-
-weights = [65, 15, 15, 4, 1]
-
 
 group_ids = []
 
@@ -43,11 +41,7 @@ n = len(df_combined)
 
 while i < n:
 
-    size = random.choices(
-        group_sizes,
-        weights=weights,
-        k=1
-    )[0]
+    size = random.choices(list(group_size_coefficients.keys()),weights=list(group_size_coefficients.values()),k=1)[0]
 
     size = min(size, n - i)
 
@@ -96,5 +90,3 @@ print(
 
 
 df_combined.to_parquet(PROJECT_DIR / "groups.parquet",index=False)
-
-print(f"\nФайл сохранён: " f"{PROJECT_DIR / 'groups.parquet'}")

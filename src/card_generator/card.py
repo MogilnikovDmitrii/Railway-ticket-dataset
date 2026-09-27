@@ -42,5 +42,3 @@ def luhn(number):
 
     return str((10 - total % 10) % 10)
 
-
-print(generate_card(payment_system_coefficients,bank_coefficients))
