@@ -1,10 +1,10 @@
 from russian_names import RussianNames
 import pandas as pd
 
-COUNT = 50
+COUNT = 50_000
 
 generator = RussianNames(count=COUNT)
-people = generator.get_batch()  # список строк "Имя Отчество Фамилия"
+people = generator.get_batch()  
 
 split_names = [p.split() for p in people]
 
@@ -15,6 +15,3 @@ df = df[["Номер", "Фамилия", "Имя", "Отчество"]]
 
 #df.to_csv("russian_names.csv", index=False, encoding="utf-8-sig")
 df.to_parquet("russian_names.parquet", index=False)
-
-print(f"\nГотово! Сгенерировано {len(df)} записей.")
-print(df.head())
