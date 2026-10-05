@@ -69,24 +69,4 @@ df_combined["Номер карты"] = (
 )
 
 
-print(df_combined.head(15))
-
-print(
-    f"\nВсего групп: "
-    f"{df_combined['Группа'].nunique()}"
-)
-
-print(
-    "\nРазмеры групп:"
-)
-
-print(
-    df_combined
-    .groupby("Группа")
-    .size()
-    .value_counts()
-    .sort_index()
-)
-
-
 df_combined.to_parquet(PROJECT_DIR / "groups.parquet",index=False)

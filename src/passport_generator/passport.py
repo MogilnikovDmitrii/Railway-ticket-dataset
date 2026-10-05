@@ -2,6 +2,8 @@ import random
 import json
 import pandas as pd
 from pathlib import Path
+from src.config.config import COUNT_PASS
+
 BASE_DIR = Path(__file__).resolve().parent
 
 with open(BASE_DIR / "okato_codes.txt", "r", encoding="utf-8") as file:
@@ -9,7 +11,7 @@ with open(BASE_DIR / "okato_codes.txt", "r", encoding="utf-8") as file:
 
 pasports = set()
 
-while len(pasports) < 50000:
+while len(pasports) < COUNT_PASS:
     series = random.choice(okato_codes) + str((random.randint(97,126))%100).zfill(2)
     number = str(random.randint(100000,999999))
 

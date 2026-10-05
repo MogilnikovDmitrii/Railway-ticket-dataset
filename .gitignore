@@ -1,3 +1,5 @@
 *.parquet
 __pycache__/
 *.pyc
+*.csv
+src/config/payment_settings.json
